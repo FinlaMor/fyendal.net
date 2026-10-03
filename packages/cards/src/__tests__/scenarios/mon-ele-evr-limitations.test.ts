@@ -114,7 +114,31 @@ describe("Monarch, Tales of Aria, and Everfest rules regression coverage", () =>
       { hero: "dorinthea", equipment: NO_EQUIPMENT },
     ] });
     g.play("rouse the ancients|3").chooseOption("reveal:");
-    g.expectAttackValue(7);
+    g.expectAttackValue(7)
+      .blockWith().settle();
+    g.expectAP(0, 1);
+  });
+
+  it("Rouse the Ancients gets no bonus when not revealing enough power", () => {
+    const g = scenario({ seats: [
+      { hero: "rhinar", hand: ["rouse the ancients|3", "swing big|1", "scar for a scar|1"], resources: 3, equipment: NO_EQUIPMENT },
+      { hero: "dorinthea", equipment: NO_EQUIPMENT },
+    ] });
+    g.play("rouse the ancients|3");
+    g.expectAttackValue(0)
+      .blockWith().settle();
+    g.expectAP(0, 0);
+  });
+
+  it("Rouse the Ancients gets no bonus when not revealing", () => {
+    const g = scenario({ seats: [
+      { hero: "rhinar", hand: ["rouse the ancients|3", "swing big|1", "raging onslaught|1"], resources: 3, equipment: NO_EQUIPMENT },
+      { hero: "dorinthea", equipment: NO_EQUIPMENT },
+    ] });
+    g.play("rouse the ancients|3").chooseOption("no");
+    g.expectAttackValue(0)
+      .blockWith().settle();
+    g.expectAP(0, 0);
   });
 
   it("Exude Confidence suppresses responses until sufficiently defended", () => {

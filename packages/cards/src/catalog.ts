@@ -140,6 +140,7 @@ export type { PresentationResult } from "./presentation.js";
  * card's own text. Keyed by functional key so reprints inherit the override.
  */
 const KEYWORD_OVERRIDES: Record<string, string[]> = {
+  "rouse the ancients|3": [],
   // Older OUT data predates the explicit Blade Break keyword field.
   "mask of many faces|0": ["Blade Break"],
   // Harmonized Kodachi gains go again only while its controller has a cost-0
