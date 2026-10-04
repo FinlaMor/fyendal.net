@@ -1,4 +1,4 @@
-import type { CardInstance, CardScript, DeepReadonly, ScriptCtx} from "@fyendal/engine";
+import type { CardInstance, CardScript, DeepReadonly, ScriptCtx } from "@fyendal/engine";
 import { functionalKeyOf } from "../../functional.js";
 import { commonOptionMessages, decisionMessage, decisionPrompt, isSixPlus, opponentSeat, previousAttackHasName, reprise } from "../shared-helpers.js";
 
