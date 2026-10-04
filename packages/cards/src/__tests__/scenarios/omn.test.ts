@@ -1211,3 +1211,30 @@ describe("OMN — import and set mechanics", () => {
       .settle();
   });
 });
+
+describe("OMN — Lionclaw Maul", () => {
+  it("attacks at base power without recursing into its own bonus, and the crowd boos on hit", () => {
+    const s = scenario({
+      seats: [
+        { hero: "rhinar", weapons: ["lionclaw maul|0"], resources: 2, equipment: NO_EQUIPMENT },
+        foe({ life: 20 }),
+      ],
+    });
+    s.attackWithWeapon("lionclaw maul|0").expectAttackValue(1).blockWith().settle();
+    s.expectLife(1, 19);
+    expect(s.state.players[0]!.flags.booedThisTurn).toBe(true);
+  });
+
+  it("gets +1{p} once its power is above base", () => {
+    const s = scenario({
+      seats: [
+        { hero: "rhinar", weapons: ["lionclaw maul|0"], hand: ["pummel|1"], resources: 4, equipment: NO_EQUIPMENT },
+        foe(),
+      ],
+    });
+    s.attackWithWeapon("lionclaw maul|0").blockWith()
+      .react("pummel|1", { settle: false })
+      .passPriority().passPriority() // Resolve Pummel.
+      .expectAttackValue(6); // 1 base + 4 Pummel + 1 Lionclaw
+  });
+});
