@@ -140,6 +140,7 @@ export type { PresentationResult } from "./presentation.js";
  * card's own text. Keyed by functional key so reprints inherit the override.
  */
 const KEYWORD_OVERRIDES: Record<string, string[]> = {
+  "rouse the ancients|3": [],
   // The following cards have conditional go again and need to have their keywords overridden here.
     "bloodrush bellow|2": [],
     "astral strike|1": [],

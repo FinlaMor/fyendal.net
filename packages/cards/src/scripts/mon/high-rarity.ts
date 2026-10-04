@@ -213,7 +213,6 @@ function rouseRevealOptions(ctx: ScriptCtx): string[] {
 
 const rouseTheAncients: CardScript = {
   additionalCost(ctx) {
-    ctx.suppressCardKeyword(ctx.self.instanceId, "go again");
     const options = rouseRevealOptions(ctx);
     if (options.length) ctx.requestChoice("rouse-reveal", decisionPrompt("Reveal attacks with at least 13 total power?", "card.mon.rouse.reveal", {
       optionMessages: {
