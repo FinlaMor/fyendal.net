@@ -6,7 +6,9 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./evaluation": "./src/evaluation.ts"
+    "./evaluation": "./src/evaluation.ts",
+    "./recording": "./src/recording.ts",
+    "./attribution": "./src/attribution.ts"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
